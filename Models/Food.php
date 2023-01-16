@@ -29,7 +29,7 @@ class Food extends Product {
      */ 
     public function setQty($_qty)
     {
-        $this->qty = $_qty;
+        $this->qty = $_qty . "kg";
         return $this;
     }
 

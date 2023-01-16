@@ -17,8 +17,6 @@ class Product {
         $this->setPrice($_price);
     }
 
-
-
     /**
      * Get the value of name
      */ 
@@ -117,7 +115,7 @@ class Product {
      * @return  self
      */ 
     public function setPrice($_price){
-        $this->price = $_price;
+        $this->price = $_price ."€";
         return $this;
     }
 }

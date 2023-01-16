@@ -90,7 +90,7 @@ $products = [
             <div class="row">
                 <?php foreach($products as $product) { ?> 
                     <div class="col-4 mb-3">
-                        <div class="card" style="height: 26rem;">
+                        <div class="card bg-light" style="height: 26rem;">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $product->getName() ?></h5>
                                 <h6 class="card-subtitle mb-2 text-muted"><?php echo $product->getBrand() ?></h6>
