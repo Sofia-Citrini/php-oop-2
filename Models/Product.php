@@ -176,7 +176,13 @@ class Product {
                         <h6 class="m-0 text-white"><?php echo $product->getPrice() ?></h6> 
                     </div>
 
-                    <div class="position-absolute top-0 end-0 translate-middle badge rounded-pill bg-success"><?php echo $product->getType() ?></div>
+                    <div class="position-absolute top-0 end-0 translate-middle badge rounded-pill bg-success">
+                        <?php echo $product->getType() ?>
+                    </div>
+
+                    <div class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                        <i class="fa-solid <?php echo ($product->getCategory()->getName() != null) ? $product->getCategory()->getIcon() : '' ?>"></i>   
+                    </div>
                 </div>
             </div>
 

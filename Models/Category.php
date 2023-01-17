@@ -46,8 +46,4 @@ class Category {
         $this->icon = $_icon;
         return $this;
     }
-
-    public function getIconHTML(){
-        return '<i class="fa-solid $this->icon"></i>';
-    }
 }

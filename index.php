@@ -65,7 +65,7 @@ $products = [
     )
 ];
 
-var_dump($products);
+// var_dump($products);
 // var_dump($cat->getIconHTML());
 
 ?>
