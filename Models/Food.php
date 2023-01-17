@@ -1,11 +1,12 @@
 <?php 
 
 require_once __DIR__ . "/Product.php";
+require_once __DIR__ . "/Category.php";
 
 class Food extends Product {
     protected $type = "Alimentazione";
     protected $qty;
-    protected $ingredient;
+    protected $ingredient = [];
 
     function __construct($_name, $_brand, Category $_category, $_description, $_price, $_qty, $_ingredient){
         parent::__construct($_name, $this->type, $_brand, $_category, $_description, $_price);
@@ -27,8 +28,7 @@ class Food extends Product {
      *
      * @return  self
      */ 
-    public function setQty($_qty)
-    {
+    public function setQty($_qty) {
         $this->qty = $_qty . "kg";
         return $this;
     }

@@ -1,6 +1,7 @@
 <?php 
 
 require_once __DIR__ . "/Product.php";
+require_once __DIR__ . "/Category.php";
 
 class Kennel extends Product {
     protected $type = "Cucce e Trasportini";

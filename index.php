@@ -1,5 +1,6 @@
 <?php 
 
+//importo le classi
 require_once "./Models/Product.php";
 require_once "./Models/Category.php";
 require_once "./Models/Food.php";
@@ -7,61 +8,65 @@ require_once "./Models/Kennel.php";
 require_once "./Models/Toy.php";
 include "./data.php";
 
+$cat = new Category ("cat", 'fa-cat');
+$dog = new Category ("dog", 'fa-dog');
+// var_dump($cat, $dog);
+
 $products = [
-    new Kennel (
+    $cuccia = new Kennel (
         "Cuccia Cortina",
         "Pet Boutique",
-        new Category ("dog"),
+        $dog,
+        79.50,
         "É realizzato in cotone soft touch e alcantara. Questo modello presenta il cuscino double face che la rendono maggiormente versatile",
-        79.50
     ),
-    new Kennel(
+    $trasportino = new Kennel(
         "Trasportino No stress",
         "Pet around you",
-        new Category ("cat"),
+        $cat,
+        25.90,
         "Questo trasportino si apre comodamente dall'alto e la chiusura è resa ancora più agevole grazie a 2 grandi clip.",
-        25.90
     ),
-    new Food (
+    $croccantini = new Food (
         "All Breeds Adult",
         "Monge",
-        new Category ("dog"),
-        "Alimento secco completo e bilanciato per cani adulti di tutte le razze che necessitano di alimenti ad alta digeribilità.",
+        $dog,
         19.99,
+        "Alimento secco completo e bilanciato per cani adulti di tutte le razze che necessitano di alimenti ad alta digeribilità.",
         2.5,
-        "Agnello, riso e patate"
+        ['Agnello', 'Riso', 'Patate']
     ),
-    new Food(
+    $mangime = new Food(
         "Kitten",
         "Royal Canin",
-        new Category ("cat"),
-        "Alimento secco per gatti ideale per accompagnare il tuo gattino nella prime fasi di vita. La crescita, infatti, è una fase essenziale nella vita del tuo gatto",
+        $cat,
         81.70,
+        "Alimento secco per gatti ideale per accompagnare il tuo gattino nella prime fasi di vita. La crescita, infatti, è una fase essenziale nella vita del tuo gatto",
         10,
-        "Tacchino" 
+        ['Pollo', 'Tacchino']
     ),
-    new Toy (
+    $kong = new Toy (
         "Kong",
         "KONG",
-        new Category ("dog"),
-        "Salta e rimbalza in modo del tutto imprevedibile. Una sfida irresistibile per l'istinto di gioco e di caccia di ogni cane",
+        $dog,
         21.30,
+        "Salta e rimbalza in modo del tutto imprevedibile. Una sfida irresistibile per l'istinto di gioco e di caccia di ogni cane",
         9,
-        "100% plastica"
+        ['100% Plastica']
     ),
-    new Toy (
+    $tiragraffi = new Toy (
         "Tiragraffi",
         "Trixie",
-        new Category ("cat"),
-        "Graffiatoio ad albero composto da ben 4 ripiani",
+        $cat,
         142.45,
+        "Graffiatoio ad albero composto da ben 4 ripiani",
         "23",
-        "fodera in peluche e tronchetti rivetiti in juta",
+        ['Fodera in peluche', 'Tronchetti rivestiti in juta']
     )
 ];
 
-// var_dump($prodotti);
-
+var_dump($products);
+// var_dump($cat->getIconHTML());
 
 ?>
 
@@ -76,6 +81,7 @@ $products = [
     <title>php-oop-2</title>
 
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 
 <body>
@@ -90,32 +96,7 @@ $products = [
             <div class="row">
                 <?php foreach($products as $product) { ?> 
                     <div class="col-4 mb-3">
-                        <div class="card bg-light" style="height: 26rem;">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $product->getName() ?></h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><?php echo $product->getBrand() ?></h6>
-                                <p class="card-text"><?php echo $product->getDescription() ?></p>
-
-                                <div class="py-3 <?php echo (method_exists($product, "getIngredient") ? 'd-block' : 'd-none') ?>">
-                                    <h6 class="mb-0">Inredienti:</h6>
-                                    <?php echo (method_exists($product, "getIngredient") ? $product->getIngredient() : '') ?>
-                                </div>
-
-                                <div class="py-3 <?php echo (method_exists($product, "getQty") ? 'd-block' : 'd-none') ?>">
-                                    <h6 class="mb-0">Quantità:</h6>
-                                    <?php echo (method_exists($product, "getQty") ? $product->getQty() : '') ?>
-                                </div>
-
-                                <div class="py-3 <?php echo (method_exists($product, "getMaterial") ? 'd-block' : 'd-none') ?>">
-                                    <h6 class="mb-0">Quantità:</h6>
-                                    <?php echo (method_exists($product, "getMaterial") ? $product->getMaterial() : '') ?>
-                                </div>
-
-                                <div class="bg-danger d-inline-block rounded-pill p-2 px-4">
-                                    <h6 class="m-0 text-white"><?php echo $product->getPrice() ?></h6> 
-                                </div>
-                            </div>
-                        </div>
+                        <?php $product->printCard($product) ?>
                     </div>  
                 <?php } ?>    
             </div>

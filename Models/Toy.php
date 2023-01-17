@@ -1,11 +1,12 @@
 <?php 
 
 require_once __DIR__ . "/Product.php";
+require_once __DIR__ . "/Category.php";
 
 class Toy extends Product {
     protected $type = "Giochi";
     protected $size;
-    protected $material;
+    protected $material = [];
 
     function __construct($_name, $_brand, Category $_category, $_description, $_price, $_size, $_material){
         parent::__construct($_name, $this->type, $_brand, $_category, $_description, $_price);
