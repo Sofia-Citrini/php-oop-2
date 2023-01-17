@@ -148,14 +148,14 @@ class Product {
      * @return  self
      */ 
     public function setPrice($_price){
-        $this->price = $_price ."€";
+        $this->price = number_format($_price, 2) ."€";
         return $this;
     }
 
     public function printCard($product){
         ?>
 
-            <div class="card bg-light" style="height: 26rem;">
+            <div class="card bg-light position relative" style="height: 26rem;">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $product->getName() ?></h5>
                     <h6 class="card-subtitle mb-2 text-muted"><?php echo $product->getBrand() ?></h6>
@@ -175,6 +175,8 @@ class Product {
                     <div class="bg-danger d-inline-block rounded-pill p-2 px-4">
                         <h6 class="m-0 text-white"><?php echo $product->getPrice() ?></h6> 
                     </div>
+
+                    <div class="position-absolute top-0 end-0 translate-middle badge rounded-pill bg-success"><?php echo $product->getType() ?></div>
                 </div>
             </div>
 
